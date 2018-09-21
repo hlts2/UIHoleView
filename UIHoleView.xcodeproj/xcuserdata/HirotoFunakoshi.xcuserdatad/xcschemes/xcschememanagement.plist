@@ -4,10 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>UIHoleView.xcscheme</key>
+		<key>UIHoleView.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>86CD416E21554ED900FB0765</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>86CD417721554ED900FB0765</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
