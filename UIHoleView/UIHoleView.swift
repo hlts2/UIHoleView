@@ -1,17 +1,17 @@
 import UIKit
 
-public protocol Drawable {
+public protocol HoleDrawable {
     func draw(_ rect: CGRect, hole: Hole)
 }
 
-public class DrawSquareHole: Drawable {
+public class DrawSquareHole: HoleDrawable {
     public func draw(_ rect: CGRect, hole: Hole) {
         hole.color.setFill()
         UIRectFill(hole.path.bounds)
     }
 }
 
-public class DrawRoundedCornerHole: Drawable {
+public class DrawRoundedCornerHole: HoleDrawable {
     public func draw(_ rect: CGRect, hole: Hole) {
         
     }
@@ -20,9 +20,9 @@ public class DrawRoundedCornerHole: Drawable {
 public class Hole {
     internal var path: UIBezierPath!
     internal var color: UIColor!
-    internal var drawer: Drawable!
+    internal var drawer: HoleDrawable!
     
-    init(path: UIBezierPath, color: UIColor, drawer: Drawable) {
+    init(path: UIBezierPath, color: UIColor, drawer: HoleDrawable) {
         self.path   = path
         self.color  = color
         self.drawer = drawer
@@ -39,6 +39,10 @@ public class UIHoleView: UIView {
     
     public func setHoles(_ holes: [Hole]) {
         self.holes = holes
+        
+        if self.isOpaque {
+            self.isOpaque = false
+        }
     }
     
     override public func draw(_ rect: CGRect) {
@@ -64,3 +68,4 @@ public class UIHoleView: UIView {
         return self
     }
 }
+
