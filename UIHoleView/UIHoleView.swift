@@ -1,39 +1,31 @@
 import UIKit
 
-public protocol DrawHole {
+public protocol Drawable {
     func draw(_ rect: CGRect, hole: Hole)
 }
 
-public class DrawSquareHole: DrawHole {
+public class DrawSquareHole: Drawable {
     public func draw(_ rect: CGRect, hole: Hole) {
-        let holeIntersection = rect.intersection(hole.rect)
-        if holeIntersection.isNull { return }
         hole.color.setFill()
-        UIRectFill(holeIntersection)
+        UIRectFill(hole.path.bounds)
     }
 }
 
-public class DrawRoundedCornerHole: DrawHole {
-    public func draw(_ rect: CGRect, hole: Hole) {}
+public class DrawRoundedCornerHole: Drawable {
+    public func draw(_ rect: CGRect, hole: Hole) {
+        
+    }
 }
 
 public class Hole {
-    internal var rect: CGRect!
+    internal var path: UIBezierPath!
     internal var color: UIColor!
-    internal var cornerRadius: CGFloat?
-    internal let drawer: DrawHole!
+    internal var drawer: Drawable!
     
-    init(rect: CGRect, color: UIColor, cornerRadius: CGFloat) {
-        self.rect   = rect
+    init(path: UIBezierPath, color: UIColor, drawer: Drawable) {
+        self.path   = path
         self.color  = color
-        self.cornerRadius = cornerRadius
-        self.drawer = DrawRoundedCornerHole()
-    }
-    
-    init(rect: CGRect, color: UIColor) {
-        self.rect  = rect
-        self.color = color
-        self.drawer = DrawSquareHole()
+        self.drawer = drawer
     }
 }
 
@@ -59,5 +51,16 @@ public class UIHoleView: UIView {
             hole.drawer.draw(rect, hole: hole)
         }
     }
+    
+    override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        guard let holes = self.holes else { return self }
+        
+        for hole in holes {
+            if hole.path.contains(point) {
+                return nil
+            }
+        }
+        
+        return self
+    }
 }
-
