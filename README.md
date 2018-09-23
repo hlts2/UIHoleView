@@ -47,6 +47,9 @@ let hole = Hole(path: UIBezierPath(rect: CGRect(x: 0, y: 0, width: 200, height: 
                 drawer: DrawSquareHole())
 ```
 
+<img src="https://github.com/hlts2/UIHoleView/blob/master/images/sqare_hole.png" width="100" height="80" />
+
+
 - Circule Hole
 
 ```swift
@@ -54,6 +57,9 @@ let hole = Hole(path: UIBezierPath(rect: CGRect(x: 0, y: 0, width: 200, height: 
                 color: UIColor.clear,
                 drawer: DrawCircleHole())
 ```
+
+<img src="https://github.com/hlts2/UIHoleView/blob/master/images/circule_hole.png" width="100" height="80" />
+
 - Rounded Corner Hole
 
 ```swift
@@ -61,3 +67,6 @@ let hole3 = Hole(path: UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 200, 
                  color: UIColor.clear,
                  drawer: DrawRoundedCornerHole())
 ```
+
+<img src="https://github.com/hlts2/UIHoleView/blob/master/images/rounded_corner_hole.png" width="100" height="80" />
+
