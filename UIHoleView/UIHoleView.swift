@@ -6,14 +6,32 @@ public protocol HoleDrawable {
 
 public class DrawSquareHole: HoleDrawable {
     public func draw(_ rect: CGRect, hole: Hole) {
-        hole.color.setFill()
-        UIRectFill(hole.path.bounds)
+        guard let ctxt = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        
+        ctxt.setFillColor(hole.color.cgColor)
+        ctxt.setBlendMode(.copy)
+        ctxt.fill(hole.path.bounds)
+    }
+}
+
+public class DrawCircleHole: HoleDrawable {
+    public func draw(_ rect: CGRect, hole: Hole) {
+        guard let ctxt = UIGraphicsGetCurrentContext() else {
+            return
+        }
+        
+        ctxt.setFillColor(hole.color.cgColor)
+        ctxt.setBlendMode(.copy)
+        ctxt.fillEllipse(in: hole.path.bounds)
     }
 }
 
 public class DrawRoundedCornerHole: HoleDrawable {
     public func draw(_ rect: CGRect, hole: Hole) {
-        
+        hole.color.setFill()
+        hole.path.fill(with: .copy, alpha: 0.0)
     }
 }
 
@@ -68,4 +86,3 @@ public class UIHoleView: UIView {
         return self
     }
 }
-
