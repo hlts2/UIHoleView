@@ -5,6 +5,7 @@ public protocol HoleDrawable {
 }
 
 public class DrawSquareHole: HoleDrawable {
+    public init() {}
     public func draw(_ rect: CGRect, hole: Hole) {
         guard let ctxt = UIGraphicsGetCurrentContext() else {
             return
@@ -17,6 +18,7 @@ public class DrawSquareHole: HoleDrawable {
 }
 
 public class DrawCircleHole: HoleDrawable {
+    public init() {}
     public func draw(_ rect: CGRect, hole: Hole) {
         guard let ctxt = UIGraphicsGetCurrentContext() else {
             return
@@ -29,6 +31,7 @@ public class DrawCircleHole: HoleDrawable {
 }
 
 public class DrawRoundedCornerHole: HoleDrawable {
+    public init() {}
     public func draw(_ rect: CGRect, hole: Hole) {
         hole.color.setFill()
         hole.path.fill(with: .copy, alpha: 0.0)
@@ -40,7 +43,7 @@ public class Hole {
     internal var color: UIColor!
     internal var drawer: HoleDrawable!
     
-    init(path: UIBezierPath, color: UIColor, drawer: HoleDrawable) {
+    public init(path: UIBezierPath, color: UIColor, drawer: HoleDrawable) {
         self.path   = path
         self.color  = color
         self.drawer = drawer
@@ -50,7 +53,7 @@ public class Hole {
 public class UIHoleView: UIView {
     private var holes: [Hole]?
     
-    convenience init(holes: [Hole]) {
+    public convenience init(holes: [Hole]) {
         self.init()
         self.setHoles(holes)
     }
