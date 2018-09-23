@@ -70,3 +70,6 @@ let hole3 = Hole(path: UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 200, 
 
 <img src="https://github.com/hlts2/UIHoleView/blob/master/images/rounded_corner_hole.png" width="100" height="80" />
 
+## License
+
+UIHoleView is released under the MIT license. Go read the LICENSE file for more information.
